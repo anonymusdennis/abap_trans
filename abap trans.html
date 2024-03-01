@@ -34,19 +34,19 @@
     <script async defer>
       let translist = []
       translist.push(['se80', 'devtools']) //[transactionname, transactiondescription]
-      translist.push(['se01', 'Transporte Erweitert Anzeigen']) //[transactionname, transactiondescription]
+      translist.push(['se01', 'display transports (expanded view)']) //[transactionname, transactiondescription]
       translist.push([
         'se11',
-        'Dictionary pflege(Tabelle,View,Datentyp/gruppe,Domäne,Suchhilfe,Sperrobjekt)',
+        'Dictionary Update of the table (view), data type/group, domain, search help, and lock object.',
       ]) //[transactionname, transactiondescription]
-      translist.push(['se12', 'dasselbe nur mit anzeige']) //[transactionname, transactiondescription]
+      translist.push(['se12', 'the same as se11 but only displaying, no changing']) //[transactionname, transactiondescription]
       translist.push(['se20', '"Enhancements"']) //[transactionname, transactiondescription]
-      translist.push(['se21', 'Pakete finden']) //[transactionname, transactiondescription]
-      translist.push(['se24', 'Objekttypen anzeigen/ändern']) //[transactionname, transactiondescription]
-      translist.push(['se32', 'Nachrichten pflegen (auch klassen)']) //[transactionname, transactiondescription]
-      translist.push(['se91', 'zeigen / ändern von Nachrichtenklassen']) //[transactionname, transactiondescription]
+      translist.push(['se21', 'search for packages']) //[transactionname, transactiondescription]
+      translist.push(['se24', 'Show / Change Object Types']) //[transactionname, transactiondescription]
+      translist.push(['se32', 'Maintain messages (also classes)']) //[transactionname, transactiondescription]
+      translist.push(['se91', 'change / show messages']) //[transactionname, transactiondescription]
       translist.push(['se39', 'Split-screen edit']) //[transactionname, transactiondescription] 
-      translist.push(['RSVARDOC_NEW', 'Transform/fix für Varianten von programmen (keine Transaktion sondern se11)','/nse38','/ose38']) //[transactionname, transactiondescription] 
+      translist.push(['RSVARDOC_NEW', 'Transform/fix for variants of programmes (no transaction but se38)','/nse38','/ose38']) //[transactionname, transactiondescription] 
       translist.push(['&SAP_EDIT', 'Edit in se16n','/nn','/on']) //[transactionname, transactiondescription] 
       translist.push(['SHDB', 'Record Transactions']) //[transactionname, transactiondescription] 
       translist.push(['SOST', 'Push emails out of de7']) //
@@ -68,7 +68,7 @@
         columns:[                 //define the table columns
         {title:"Trans-Name", field:"name"},
         {title:"ID", field:"id"},
-        {title:"Beschreibung", field:"desc"},
+        {title:"Description", field:"desc"},
         {title:"New window trans", field:"slasho"},
         {title:"Current window trans", field:"slashn"},
     ],

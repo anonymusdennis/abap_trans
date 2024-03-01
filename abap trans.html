@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="dist/js/tabulator.min.js"></script>
+    <script type="text/javascript" src="dist/js/jquery_wrapper.js"></script>
+    <link rel="stylesheet" href="dist/css/tabulator.css">
+    <link rel="stylesheet" href="dist/css/tabulator_bootstrap3.css">
+    <link rel="stylesheet" href="dist/css/tabulator_bootstrap4.css">
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an
+        <strong>outdated</strong>
+        browser. Please
+        <a href="#">upgrade your browser</a>
+        to improve your experience.
+      </p>
+    <![endif]-->
+    <input type="text" id = "COPYEL">
+    <div id="example-table"></div>
+    <script async defer>
+      let translist = []
+      translist.push(['se80', 'devtools']) //[transactionname, transactiondescription]
+      translist.push(['se01', 'Transporte Erweitert Anzeigen']) //[transactionname, transactiondescription]
+      translist.push([
+        'se11',
+        'Dictionary pflege(Tabelle,View,Datentyp/gruppe,Domäne,Suchhilfe,Sperrobjekt)',
+      ]) //[transactionname, transactiondescription]
+      translist.push(['se12', 'dasselbe nur mit anzeige']) //[transactionname, transactiondescription]
+      translist.push(['se20', '"Enhancements"']) //[transactionname, transactiondescription]
+      translist.push(['se21', 'Pakete finden']) //[transactionname, transactiondescription]
+      translist.push(['se24', 'Objekttypen anzeigen/ändern']) //[transactionname, transactiondescription]
+      translist.push(['se32', 'Nachrichten pflegen (auch klassen)']) //[transactionname, transactiondescription]
+      translist.push(['se91', 'zeigen / ändern von Nachrichtenklassen']) //[transactionname, transactiondescription]
+      translist.push(['/WUE/SDLOCK', 'Sperren von Materialien zu vkorgs']) //[transactionname, transactiondescription]
+      translist.push(['se39', 'Split-screen edit']) //[transactionname, transactiondescription] 
+      translist.push(['RSVARDOC_NEW', 'Transform/fix für Varianten von programmen (keine Transaktion sondern se11)','/nse38','/ose38']) //[transactionname, transactiondescription] 
+      translist.push(['&SAP_EDIT', 'Edit in se16n','/nn','/on']) //[transactionname, transactiondescription] 
+      translist.push(['SHDB', 'Record Transactions']) //[transactionname, transactiondescription] 
+      translist.push(['SOST', 'Push emails out of de7']) //
+      //display as html table with controls by using library
+      //first we need to push data in format of above
+      var tabledata = []
+      translist.forEach((el, index) => {
+        tabledata.push({
+          id: index,
+          name: el[0],
+          desc: el[1],
+          slasho: el[2] || '/o' + el[0],
+          slashn: el[3] || '/n' + el[0],
+        })
+      })
+      //now display
+      var table = new Tabulator('#example-table', {
+        data: tabledata, //assign data to table
+        columns:[                 //define the table columns
+        {title:"Trans-Name", field:"name"},
+        {title:"ID", field:"id"},
+        {title:"Beschreibung", field:"desc"},
+        {title:"New window trans", field:"slasho"},
+        {title:"Current window trans", field:"slashn"},
+    ],
+      })
+      function theclickin(event)
+      {
+        console.log(event)
+        let el = event.srcElement;
+        let cellname = el.attributes['tabulator-field'].nodeValue;
+        if(cellname == 'slashn' || cellname == 'slasho' || cellname == 'name')
+        {
+            let COPYEL = document.querySelector('#COPYEL')
+            COPYEL.value = el.innerHTML
+            COPYEL.select();
+            document.execCommand("copy");
+        }
+      }
+      setTimeout(()=>{document.querySelectorAll("div.tabulator-cell").forEach(el=>el.addEventListener('click', theclickin ))},1000)
+    </script>
+  </body>
+</html>
